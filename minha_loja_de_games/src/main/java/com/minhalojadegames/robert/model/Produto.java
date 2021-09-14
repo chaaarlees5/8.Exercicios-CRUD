@@ -12,17 +12,22 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Produto {
-	
+
 	private @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long idProduto;
 	private @NotBlank String titulo;
 	private String descricao;
 	private @NotBlank String classificacaoEtaria;
 	private @NotBlank Float preco;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "descricao_id")
-	@JsonIgnoreProperties({"produtos"})
+	@JsonIgnoreProperties({ "produtos" })
 	private Categoria categoriaRelacionada;
+
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	@JsonIgnoreProperties({ "produtosComprados" })
+	private Cliente comprador;
 
 	public Long getIdProduto() {
 		return idProduto;
@@ -71,6 +76,13 @@ public class Produto {
 	public void setCategoriaRelacionada(Categoria categoriaRelacionada) {
 		this.categoriaRelacionada = categoriaRelacionada;
 	}
-	
-	
+
+	public Cliente getComprador() {
+		return comprador;
+	}
+
+	public void setComprador(Cliente comprador) {
+		this.comprador = comprador;
+	}
+
 }
