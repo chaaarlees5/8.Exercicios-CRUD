@@ -23,13 +23,13 @@ import com.minhalojadegames.robert.repository.ClienteRepository;
 import com.minhalojadegames.robert.service.ClienteService;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/cliente")
 public class ClienteController {
 	
 	private @Autowired ClienteRepository repositorio;
 	private @Autowired ClienteService servico;
 
-	@GetMapping("/all")
+	@GetMapping("/todos")
 	public ResponseEntity<List<Cliente>> pegarTodos() {
 		List<Cliente> listaObjeto = repositorio.findAll();
 
